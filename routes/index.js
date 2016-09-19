@@ -6,7 +6,8 @@ module.exports = {
   get: get,
   getUser: getUser,
   deleteUser: deleteUser,
-  updateUser: updateUser
+  updateUser: updateUser,
+  newUser: newUser
 }
 
 function get (req, res) {
@@ -61,5 +62,20 @@ function updateUser (req, res) {
     })
     .catch(function (err) {
       res.status(204).send('DATABASE ERROR: ' + err.message)
+    })
+}
+
+function newUser (req, res) {
+  knex('users')
+    .select ()
+    .insert ({
+      name: req.body.name,
+      email: req.body.email
+    })
+    .then (function (updateCount) {
+      res.send (201)
+    })
+    .catch(function (err) {
+      res.status(204).send('DATABSE ERROR: ' + err.message)
     })
 }
