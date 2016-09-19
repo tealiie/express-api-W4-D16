@@ -7,7 +7,8 @@ module.exports = {
   getUser: getUser,
   deleteUser: deleteUser,
   updateUser: updateUser,
-  newUser: newUser
+  newUser: newUser,
+  filter: filter
 }
 
 function get (req, res) {
@@ -78,4 +79,16 @@ function newUser (req, res) {
     .catch(function (err) {
       res.status(204).send('DATABSE ERROR: ' + err.message)
     })
+}
+
+function filter (req, res) {
+  knex('users')
+  .select ()
+  .where ('name', '=', req.query.search)
+  .then(function (users) {
+    res.json(users)
+  })
+  .catch(function (err) {
+    res.status(500).send('DATABASE ERROR: ' + err.message)
+  })
 }

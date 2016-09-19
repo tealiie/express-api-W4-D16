@@ -12,10 +12,12 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(bodyParser.json())
 
 app.get('/', index.get)
+app.get ('/filter', index.filter)
 app.get('/:id', index.getUser)
 app.delete('/:id', index.deleteUser)
 app.put ('/:id', index.updateUser)
 app.post ('/', index.newUser)
+
 
 
 app.listen(PORT, function () {
