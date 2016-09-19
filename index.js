@@ -14,6 +14,7 @@ app.use(bodyParser.json())
 app.get('/', index.get)
 app.get('/:id', index.getUser)
 app.delete('/:id', index.deleteUser)
+app.put ('/:id', index.updateUser)
 
 app.listen(PORT, function () {
   console.log('Listening on port', PORT)
